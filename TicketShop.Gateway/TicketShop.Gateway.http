@@ -1,0 +1,6 @@
+@TicketShop.Gateway_HostAddress = http://localhost:5181
+
+GET {{TicketShop.Gateway_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
