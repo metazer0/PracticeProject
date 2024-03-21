@@ -23,7 +23,7 @@ namespace TicketShop.Gateway.Services
 
         public async Task<ServiceRegistryDTO> GetService(string serviceId)
         {
-            var result = await this._httpClient.GetStringAsync($"{_applicationSettings.ServiceRegistryUrl}/services/{serviceId}");
+            var result = await this._httpClient.GetStringAsync($"{_applicationSettings.ServiceRegistryUrl}");
             return JsonConvert.DeserializeObject<ServiceRegistryDTO>(result);
         }
     }

@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using TicketShop.Gateway.DTOs;
+using TicketShop.Gateway.Models;
 using TicketShop.Gateway.Settings;
 
 namespace TicketShop.Gateway.Services
@@ -21,17 +22,17 @@ namespace TicketShop.Gateway.Services
         public async Task<EventDTO> GetEventAsync(int id)
         {
             var eventsUrl = await this._serviceRegistry.GetService(_appSettings.EventCatalogServiceId);
-            var baseUrl = $"{eventsUrl.Origin}/events";
+            var baseUrl = $"{eventsUrl.Origin}/event";
             var result = await this._httpClient.GetStringAsync($"{baseUrl}/{id}");
             return JsonConvert.DeserializeObject<EventDTO>(result);
         }
 
-        public async Task<List<EventDTO>> GetEventsAsync(int id, string name)
+        public async Task<ServiceResponse<List<EventDTO>>> GetEventsAsync()
         {
-            var eventsUrl = await this._serviceRegistry.GetService(_appSettings.EventCatalogServiceId);
-            var baseUrl = $"{eventsUrl.Origin}/events";
+            var eventsUrl = "https://localhost:7065";
+            var baseUrl = $"{eventsUrl}/api/event";
             var result = await this._httpClient.GetStringAsync(baseUrl);
-            return JsonConvert.DeserializeObject<List<EventDTO>>(result);
+            return JsonConvert.DeserializeObject<ServiceResponse<List<EventDTO>>>(result);
         }
     }
 }

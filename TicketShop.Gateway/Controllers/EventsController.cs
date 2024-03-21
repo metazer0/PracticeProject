@@ -3,6 +3,8 @@ using TicketShop.Gateway.Services;
 
 namespace TicketShop.Gateway.Controllers
 {
+    [ApiController]
+    [Route("api/[controller]")]
     public class EventsController : ControllerBase
     {
         private readonly IEventService _eventService;
@@ -13,9 +15,9 @@ namespace TicketShop.Gateway.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetEvents([FromQuery] int id, [FromQuery] string name)
+        public async Task<ActionResult> GetEvents()
         {
-            var results = await _eventService.GetEventsAsync(id, name);
+            var results = await _eventService.GetEventsAsync();
             return Ok(results); 
         }
     }

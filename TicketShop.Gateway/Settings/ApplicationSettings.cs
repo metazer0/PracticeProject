@@ -9,4 +9,3 @@
         public string ShoppingBasketServiceId { get; set; }
     }
 }
-}
